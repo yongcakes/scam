@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            background-color: #ffe4e1; /* Light Pink */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #d02a54;
+            font-size: 3rem;
+            margin-bottom: 40px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button {
+            padding: 15px 35px;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        #yesBtn {
+            background-color: #ff69b4;
+            color: white;
+            z-index: 10;
+        }
+
+        #noBtn {
+            background-color: #ffffff;
+            color: #d02a54;
+            border: 2px solid #ff69b4;
+            position: relative; /* Allows it to move around */
+        }
+
+        #success-page {
+            display: none; /* Hidden at start */
+        }
+
+        img {
+            width: 300px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .love-text {
+            font-size: 2.5rem;
+            color: #d02a54;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="question-page">
+        <h1>Will You Be My Valentine?</h1>
+        <div class="button-group">
+            <button id="yesBtn" onclick="showSuccess()">Yes</button>
+            <button id="noBtn" onmouseover="moveNoButton()" onclick="moveNoButton()">No</button>
+        </div>
+    </div>
+
+    <div id="success-page">
+        <img src="clapping cat.gif" alt="Clapping Cat">
+        <div class="love-text">I love you so much!</div>
+    </div>
+
+    <script>
+        function moveNoButton() {
+            const noBtn = document.getElementById('noBtn');
+            
+            // Generate random positions within the screen
+            const padding = 50;
+            const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+            const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            // Change from relative to fixed/absolute once moving starts
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        function showSuccess() {
+            document.getElementById('question-page').style.display = 'none';
+            document.getElementById('success-page').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
